@@ -14,11 +14,13 @@ attr_reader :numero, :titular, :saldo
     #ou += valor
   end
 
- def sacar valor
-  if valor <= saldo
-    @saldo = @saldo - valor
-  else
-   puts "saldo insuficiente!"
+  def sacar valor
+    return @saldo -= valor if valor <= @saldo 
+    p "saldo insuficiente" 
   end
- end
+
+  def transferir destino, valor
+    self.sacar valor
+    destino.depositar valor
+  end
 end

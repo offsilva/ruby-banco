@@ -1,15 +1,17 @@
 require_relative "lib/conta"
+require_relative "lib/conta_corrente"
 
-joaoConta = Conta.new 1, "João Barbosa", 0
-mariaConta = Conta.new 2, "Maria Barbosa", 0 
+joaoConta = ContaCorrente.new 1, "João Barbosa"
+mariaConta = Conta.new 2, "Maria Clara"
 
 joaoConta.depositar 1000
-mariaConta.depositar 500
+joaoConta.depositar 500
 
-joaoConta.sacar 1000
-mariaConta.sacar 1000
+mariaConta.depositar 220
 
-puts"#{joaoConta.titular} - Saldo R$ #{ '%2.f' % joaoConta.saldo}"
-puts"#{mariaConta.titular} - Saldo R$ #{ '%2.f' % mariaConta.saldo}"
+joaoConta.transferir mariaConta, 400
+# joaoConta.sacar 800
+# mariaConta.sacar 500
 
-#quiser adicionar outra pessoa repita "conta new" "e "puts"
+puts "#{joaoConta.titular} - Saldo R$ #{ '%.2f' % joaoConta.saldo}"
+puts "#{mariaConta.titular} - Saldo R$ #{ '%.2f' % mariaConta.saldo}"
