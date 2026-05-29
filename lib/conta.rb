@@ -2,7 +2,7 @@ class Conta
 
 attr_reader :numero, :titular, :saldo
 
-  def initialize(numero, titular, saldo)
+  def initialize(numero, titular)
     @numero = numero
     @titular = titular 
     @saldo = 0
