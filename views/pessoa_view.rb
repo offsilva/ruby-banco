@@ -12,7 +12,10 @@ class PessoaView
     escolha = gets.chomp.to_i
     case escolha
     when 1
-     puts @data.listar
+      p " |   id   |   cpf_cnpj   |   nome cliente   | tipo "
+      @data.listar.each_with_index do |p , index| 
+        p "#{index +1} | #{p.cpf_cnpj} | #{p.nome} | #{p.tipo}"
+      end
     when 2
       print "Informe o CPF/CNPJ: "
       registro = gets.chomp
