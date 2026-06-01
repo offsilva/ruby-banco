@@ -10,8 +10,8 @@ attr_reader :numero, :titular, :saldo
 
   def depositar valor
     @saldo = @saldo + valor 
-    
     #ou += valor
+
   end
 
   def sacar valor

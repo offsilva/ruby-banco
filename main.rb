@@ -1,17 +1,30 @@
-require_relative "lib/conta"
-require_relative "lib/conta_corrente"
+require_relative "lib/util"
+require_relative "views/pessoa_view"
+require_relative "data/pessoa_data"
 
-joaoConta = ContaCorrente.new 1, "João Barbosa"
-mariaConta = Conta.new 2, "Maria Clara"
+tela = Util.new
+pessoa_data = PessoaData.new
+pessoa_view = PessoaView.new(pessoa_data)
+loop = true
 
-joaoConta.depositar 1000
-joaoConta.depositar 500
+while loop
 
-mariaConta.depositar 220
+  tela.gerar_titulo("SISTEMA DE CADASTRO")
+  print "Escolha: 1 - Pessoa | 2 - Conta:  "
+  escolha = gets.chomp.to_i 
 
-joaoConta.transferir mariaConta, 400
-# joaoConta.sacar 800
-# mariaConta.sacar 500
+  case escolha
+  when 1
+    tela.gerar_titulo "SB = Pessoa" 
+    pessoa_view.menu_pessoa
+  when 2 
+      tela.gerar_titulo "SB = Conta"
+      p "você escolheu Conta"
+  else
+      p "Opção inválida"
+  end
 
-puts "#{joaoConta.titular} - Saldo R$ #{ '%.2f' % joaoConta.saldo}"
-puts "#{mariaConta.titular} - Saldo R$ #{ '%.2f' % mariaConta.saldo}"
+  print "Deseja continuar? S - sim | N - não:  "
+  continuar = gets.chomp
+  loop = false if continuar.upcase == 'N'
+end
