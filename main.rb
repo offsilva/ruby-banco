@@ -9,7 +9,7 @@ loop = true
 
 while loop
 
-  tela.gerar_titulo("SISTEMA DE CADASTRO")
+  tela.gerar_titulo("SISTEMA BANCÁRIO")
   print "Escolha: 1 - Pessoa | 2 - Conta:  "
   escolha = gets.chomp.to_i 
 

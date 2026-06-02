@@ -1,4 +1,6 @@
 require_relative "../lib/pessoa"
+require_relative "../lib/endereco"
+
 class PessoaView
   
   def initialize(data)
@@ -6,27 +8,47 @@ class PessoaView
   end
 
   def menu_pessoa
-   loop do
+   
+    loop do
     print "Escolha: 1 - listar | 2 - Cadastrar | 0 - Voltar:  "
-    
     escolha = gets.chomp.to_i
     case escolha
     when 1
-      p " |   id   |   cpf_cnpj   |   nome cliente   | tipo "
+      p " |     id     |    cpf_cnpj   |   nome cliente   |    tipo   |    CIDADE/UF"
       @data.listar.each_with_index do |p , index| 
-        p "#{index +1} | #{p.cpf_cnpj} | #{p.nome} | #{p.tipo}"
+        p "#{index +1} | #{p.cpf_cnpj} |     #{p.nome}    | #{p.tipo} | #{p.endereco.cidade}/#{p.edereco.uf}"
       end
     when 2
+    
       print "Informe o CPF/CNPJ: "
       registro = gets.chomp
+    
       print "Informe o nome: "
       nome = gets.chomp
-      pessoa = Pessoa.new registro, nome
-      @data.add pessoa
+    
+      print "Informe o CEP: "
+      cep = gets.chomp
+
+      print "Informe o logradouro: "
+      logradouro = gets.chomp
+
+      print "Informe o bairro: "
+      bairro = gets.chomp
+
+      print "Informe a cidade: "
+      cidade = gets.chomp
+
+      print "Informe o UF: "
+      uf = gets.chomp
+
+      endereco = Endereco.new cep, logradouro, bairro, cidade, uf
+    
+  
+      @data.add Pessoa.new registro, nome, endereco
     when 0
       break
     else
-      p "opção invalida."
+      p "opção invalida!"
     end
    end
   end
