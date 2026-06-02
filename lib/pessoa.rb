@@ -9,4 +9,13 @@ class Pessoa
     @tipo = cpf_cnpj.size <= 11 ? "PF" : "PJ"
   end
 
+  def to_h
+    {
+      cpf_cnpj: @cpf_cnpj,
+      nome: @nome,
+      tipo: @tipo,
+      endereco: @endereco.to_h
+    }
+  end
+
 end
