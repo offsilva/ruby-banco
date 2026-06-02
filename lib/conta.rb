@@ -1,9 +1,9 @@
 class Conta
 
-attr_reader :numero, :titular, :saldo
+attr_reader :cpf, :titular, :saldo
 
-  def initialize(numero, titular)
-    @numero = numero
+  def initialize(cpf, titular)
+    @cpf = cpf
     @titular = titular 
     @saldo = 0
   end
@@ -16,11 +16,16 @@ attr_reader :numero, :titular, :saldo
 
   def sacar valor
     return @saldo -= valor if valor <= @saldo 
-    p "saldo insuficiente" 
+      p "saldo insuficiente" 
   end
 
   def transferir destino, valor
-    self.sacar valor
-    destino.depositar valor
+    if valor <= saldo
+      self.sacar valor
+      destino.depositar valor
+    else
+      p "saldo insuficiente"
+    end
   end
 end
+
